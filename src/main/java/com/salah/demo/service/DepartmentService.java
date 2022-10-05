@@ -7,31 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salah.demo.dto.DepartmentDto;
-import com.salah.demo.mapper.DepartmentMapper;
-import com.salah.demo.model.Department;
+import com.salah.demo.mapper.DepartmentMapperImpl;
 import com.salah.demo.repository.DepartmentRepository;
-
 
 @Service
 public class DepartmentService {
-	
+
 	@Autowired
 	private DepartmentRepository departmentRepository;
+
 	@Autowired
-	private DepartmentMapper departmentMapper;
-	
+	DepartmentMapperImpl departmentMapperImpl;
+
 	public DepartmentService(DepartmentRepository departmentRepository2) {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Department addDepartment(Department department) {
-		return departmentRepository.save(department);
-		
+	public DepartmentDto addDepartment(DepartmentDto departmentDto) {
+		return departmentRepository.save(departmentDto);
+
 	}
-	
+
 	public List<DepartmentDto> getAllDepartment() {
-		return departmentRepository.findAll().stream().map(departmentMapper::modelToDto)
-				.collect(Collectors.toList());
+		return departmentRepository.findAll().stream().map(departmentMapperImpl::modelToDto).collect(Collectors.toList());
 	}
 
 }

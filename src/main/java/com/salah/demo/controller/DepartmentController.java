@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salah.demo.dto.DepartmentDto;
-import com.salah.demo.model.Department;
 import com.salah.demo.service.DepartmentService;
 
 @RestController
@@ -18,16 +17,16 @@ import com.salah.demo.service.DepartmentService;
 public class DepartmentController {
 	@Autowired
 	private DepartmentService departmentService;
-	
+
 	@PostMapping("/addDepartments")
 	public DepartmentDto addDepartment(@RequestBody DepartmentDto departmentDto) {
 		return departmentService.addDepartment(departmentDto);
-		
+
 	}
 
 	@GetMapping("/getAllDepartment")
 	public List<DepartmentDto> getAllDepartment() {
 		return departmentService.getAllDepartment();
-		
+
 	}
 }

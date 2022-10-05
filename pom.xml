@@ -54,7 +54,6 @@
 		    <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${org.projectlombok.version}</version>
             <scope>provided</scope>
         </dependency>
 		
@@ -69,14 +68,23 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-
-	<!--  	<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok-mapstruct-binding</artifactId>
-			<version>${version.mapstruct-lombok}</version>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            </dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>4.0.0-M3</version>
 		</dependency>
 
--->
+		<!--  	<dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${version.mapstruct-lombok}</version>
+            </dependency>
+
+    -->
 	</dependencies>
 
 	    <build>

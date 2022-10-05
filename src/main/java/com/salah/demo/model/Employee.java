@@ -1,7 +1,6 @@
 package com.salah.demo.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,11 +14,10 @@ import org.hibernate.annotations.BatchSize;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @BatchSize(size = 25)
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -27,9 +25,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "Employee")
 public class Employee {
 
-	public Employee(int i, String string, String string2, String string3, String string4, int j, Object object) {
-		// TODO Auto-generated constructor stub
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long employeeId;
@@ -41,5 +36,61 @@ public class Employee {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "department_id", referencedColumnName = "departmentId")
 	private Department department;
+
+	public long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(long employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public long getSalary() {
+		return salary;
+	}
+
+	public void setSalary(long salary) {
+		this.salary = salary;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
 }

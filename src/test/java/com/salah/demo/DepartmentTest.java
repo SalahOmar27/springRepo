@@ -1,19 +1,21 @@
 package com.salah.demo;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.salah.demo.dto.DepartmentDto;
 import com.salah.demo.model.Department;
 import com.salah.demo.repository.DepartmentRepository;
 import com.salah.demo.service.DepartmentService;
@@ -22,32 +24,40 @@ import com.salah.demo.service.DepartmentService;
 class DepartmentTest {
 
 	@Mock
-	@Autowired
 	private DepartmentRepository departmentRepository;
 
-	private AutoCloseable autoCloseable;
-	@Mock
-	@Autowired
+	@InjectMocks
 	private DepartmentService departmentService;
 
-	@BeforeEach
-	void setUp() {
-		autoCloseable = MockitoAnnotations.openMocks(this);
-		departmentService = new DepartmentService(departmentRepository);
-		
+	static DepartmentDto departmentDto;
+	static Department department;;
+
+	@BeforeAll
+	public static void setUp() {
+		DepartmentDto departmentDto = new DepartmentDto();
+		departmentDto.setId(1);
+		departmentDto.setName("HR");
+
+		Department department = new Department();
+		department.setDepartmentId(1);
+		department.setDepartmentName("HR");
 
 	}
 
 	@Test
 	public void addDepartment() {
-		// given
-		Department department = new Department("HR");
-		// when
-		departmentService.addDepartment(department);
-		// then
+
+		when(departmentRepository.save(any(Department.class))).thenAnswer(i -> {
+			Department department = i.getArgument(0);
+			department.setDepartmentId(1);
+			return department;
+		});
+
+		departmentService.addDepartment(departmentDto);
 		ArgumentCaptor<Department> argumentCaptor = ArgumentCaptor.forClass(Department.class);
 
 		verify(departmentRepository.save(argumentCaptor.capture()));
+
 	}
 
 	@Test

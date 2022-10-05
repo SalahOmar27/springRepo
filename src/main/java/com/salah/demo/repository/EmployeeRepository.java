@@ -9,6 +9,6 @@ import com.salah.demo.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-	Employee save(EmployeeDto employeeDto);
+	EmployeeDto save(EmployeeDto employeeDto);
 
 }
