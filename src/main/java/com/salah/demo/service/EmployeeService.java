@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.salah.demo.dto.EmployeeDto;
 import com.salah.demo.mapper.EmployeeMapper;
+import com.salah.demo.model.Employee;
 import com.salah.demo.repository.EmployeeRepository;
 
 @Service
@@ -17,8 +18,8 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-	public EmployeeDto addEmployee(EmployeeDto employeeDto) {
-		return employeeRepository.save(employeeDto);
+	public Employee addEmployee(EmployeeDto employeeDto) {
+		return employeeRepository.save(employeeMapper.dtoToModel(employeeDto));
 
 	}
 

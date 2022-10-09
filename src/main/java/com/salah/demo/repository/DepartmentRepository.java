@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.salah.demo.dto.DepartmentDto;
 import com.salah.demo.model.Department;
-@Repository
-public interface DepartmentRepository extends JpaRepository<Department, Long>{
 
-	DepartmentDto save(DepartmentDto departmentDto);
+@Repository
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
+
+	Department save(DepartmentDto modelToDto);
 
 }

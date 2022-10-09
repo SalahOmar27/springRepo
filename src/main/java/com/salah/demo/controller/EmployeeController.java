@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salah.demo.dto.EmployeeDto;
+import com.salah.demo.model.Employee;
 import com.salah.demo.service.EmployeeService;
 
 @RestController
@@ -17,7 +18,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@PostMapping("/addEmployee")
-	public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeDto) {
+	public Employee addEmployee(@RequestBody EmployeeDto employeeDto) {
 		return employeeService.addEmployee(employeeDto);
 		
 	}

@@ -1,5 +1,8 @@
 package com.salah.demo.dto;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,28 +15,9 @@ import lombok.NonNull;
 @Builder
 public class DepartmentDto {
 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@NonNull
 	private String name;
-
-	public DepartmentDto() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 }
