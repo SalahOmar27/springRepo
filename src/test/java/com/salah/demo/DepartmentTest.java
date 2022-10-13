@@ -52,7 +52,7 @@ class DepartmentTest {
 			return department;
 		});
 
-		Department department1 = departmentService.addDepartment(departmentDto);
+		DepartmentDto department1 = departmentService.addDepartment(departmentDto);
 		;
 		// ArgumentCaptor<Department> argumentCaptor =
 		// ArgumentCaptor.forClass(Department.class);

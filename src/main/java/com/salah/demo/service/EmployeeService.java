@@ -18,8 +18,10 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-	public Employee addEmployee(EmployeeDto employeeDto) {
-		return employeeRepository.save(employeeMapper.dtoToModel(employeeDto));
+	public EmployeeDto addEmployee(EmployeeDto employeeDto) {
+		Employee employee = employeeMapper.dtoToModel(employeeDto);
+		employee = employeeRepository.save(employee);
+		return employeeMapper.modelToDto(employee);
 
 	}
 

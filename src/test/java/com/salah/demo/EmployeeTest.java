@@ -61,7 +61,7 @@ class EmployeeTest {
 			return employee;
 		});
 
-		Employee employee1 = employeeService.addEmployee(employeeDto);
+		EmployeeDto employee1 = employeeService.addEmployee(employeeDto);
 
 		// ArgumentCaptor<Employee> argumentCaptor =
 		// ArgumentCaptor.forClass(Employee.class);

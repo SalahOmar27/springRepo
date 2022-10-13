@@ -8,15 +8,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
-@JsonInclude(JsonInclude.Include.ALWAYS)
 @BatchSize(size = 25)
 @Data
 @AllArgsConstructor
@@ -29,7 +25,7 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long departmentId;
-	@NonNull
+	// @NonNull
 	private String departmentName;
 
 }

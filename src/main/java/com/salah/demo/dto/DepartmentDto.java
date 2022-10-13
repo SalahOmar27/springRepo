@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +16,8 @@ public class DepartmentDto {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@NonNull
+	// @NonNull
+
 	private String name;
 
 }
