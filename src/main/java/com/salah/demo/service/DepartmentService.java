@@ -22,23 +22,24 @@ public class DepartmentService {
 	private DepartmentMapper departmentMapper;
 
 	@Autowired
-	DepartmentMapperImpl departmentMapperImpl;
-	
-	/*public Department addDepartment(Department department) {
-		return departmentRepository.save(department);
+	private DepartmentMapperImpl departmentMapperImpl;
+
+	public Department addDepartment(DepartmentDto departmentDto) {
+		return departmentRepository.save(departmentMapperImpl.dtoToModel(departmentDto));
+
 		
-	}*/
-
-	public DepartmentDto addDepartment(DepartmentDto departmentDto) {
-		Department department = departmentMapper.dtoToModel(departmentDto);
-		department = departmentRepository.save(department);
-		return departmentMapper.modelToDto(department);
-		// return departmentRepository.save(departmentMapper.dtoToModel(departmentDto));
-
+		/*
+		 * Department department = departmentMapper.dtoToModel(departmentDto);
+		 * department = departmentRepository.save(department); return
+		 * departmentMapper.modelToDto(department);
+		 */
 	}
 
 	public List<DepartmentDto> getAllDepartment() {
-		return departmentRepository.findAll().stream().map(departmentMapper::modelToDto).collect(Collectors.toList());
+		return departmentRepository.findAll()
+				.stream()
+				.map(departmentMapper::modelToDto)
+				.collect(Collectors.toList());
 	}
 
 }

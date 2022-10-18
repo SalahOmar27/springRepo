@@ -1,35 +1,41 @@
 package com.salah.demo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.salah.demo.dto.EmployeeDto;
+import com.salah.demo.mapper.EmployeeMapper;
+import com.salah.demo.mapper.EmployeeMapperImpl;
 import com.salah.demo.model.Department;
 import com.salah.demo.model.Employee;
 import com.salah.demo.repository.EmployeeRepository;
 import com.salah.demo.service.EmployeeService;
 
+@SpringBootTest
 class EmployeeTest {
 	@Mock
 	private EmployeeRepository employeeRepository;
 
-	@InjectMocks
+	@Mock
 	private EmployeeService employeeService;
 
-	static Employee employee;
-	static EmployeeDto employeeDto;
+	@Mock
+	private EmployeeMapper employeeMapper;
 
-	@SuppressWarnings("static-access")
+	@Mock
+	private EmployeeMapperImpl employeeMapperImpl;
+
+	
 	@BeforeAll
 	public static void setUp() {
 		EmployeeDto employeeDto = new EmployeeDto();
@@ -61,21 +67,21 @@ class EmployeeTest {
 			return employee;
 		});
 
-		EmployeeDto employee1 = employeeService.addEmployee(employeeDto);
+		EmployeeDto employeeDto = null;
+		Employee result = employeeService.addEmployee(employeeDto);
+		assertThat(employeeService.addEmployee(employeeDto)).isEqualTo(result);
 
-		// ArgumentCaptor<Employee> argumentCaptor =
-		// ArgumentCaptor.forClass(Employee.class);
-
-		// verify(employeeRepository.save(argumentCaptor.capture()));
-
-		assertEquals(employee1, employeeDto);
 	}
 
 	@Test
 	public void getAllEmployee() {
 
-		List<Employee> employees = new ArrayList<>();
-		Mockito.when(employeeRepository.findAll()).thenReturn(employees);
+		List<EmployeeDto> employees = null;
+		Mockito.when(employeeRepository.findAll()
+				.stream()
+				.map(employeeMapper::modelToDto)
+				.collect(Collectors.toList()))
+				.thenReturn(employees);
 
 	}
 

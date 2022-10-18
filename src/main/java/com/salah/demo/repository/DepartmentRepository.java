@@ -9,6 +9,6 @@ import com.salah.demo.model.Department;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
-	Department save(DepartmentDto modelToDto);
+	DepartmentDto save(DepartmentDto departmentDto);
 
 }
