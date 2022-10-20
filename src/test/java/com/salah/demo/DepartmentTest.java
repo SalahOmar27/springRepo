@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,7 @@ class DepartmentTest {
 			return department;
 		});
 
-		DepartmentDto departmentDto = null;
+		DepartmentDto departmentDto = DepartmentDto.builder().build();
 		Department result = departmentService.addDepartment(departmentDto);
 
 		assertThat(departmentService.addDepartment(departmentDto)).isEqualTo(result);
@@ -64,7 +65,7 @@ class DepartmentTest {
 	@Test
 	public void getAllDepartment() {
 
-		List<DepartmentDto> departmentDtos = null;
+		List<DepartmentDto> departmentDtos = new ArrayList<>();
 
 		Mockito.when(
 				departmentRepository.findAll()

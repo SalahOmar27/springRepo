@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ class EmployeeTest {
 			return employee;
 		});
 
-		EmployeeDto employeeDto = null;
+		EmployeeDto employeeDto = EmployeeDto.builder().build();;
 		Employee result = employeeService.addEmployee(employeeDto);
 		assertThat(employeeService.addEmployee(employeeDto)).isEqualTo(result);
 
@@ -76,7 +77,7 @@ class EmployeeTest {
 	@Test
 	public void getAllEmployee() {
 
-		List<EmployeeDto> employees = null;
+		List<EmployeeDto> employees = new ArrayList<>();
 		Mockito.when(employeeRepository.findAll()
 				.stream()
 				.map(employeeMapper::modelToDto)
